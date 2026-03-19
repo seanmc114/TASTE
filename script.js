@@ -183,6 +183,7 @@ const recipes = [
   }
 ];
 
+
 const countryLinks = {
   it: 'https://en.wikipedia.org/wiki/Italy',
   de: 'https://en.wikipedia.org/wiki/Germany',
@@ -198,6 +199,10 @@ const countryLinks = {
   np: 'https://en.wikipedia.org/wiki/Nepal'
 };
 
+const countryMaps = Object.fromEntries(
+  Object.keys(countryLinks).map((code) => [code, `assets/maps/${code}.svg`])
+);
+
 const contentsGrid = document.getElementById('contentsGrid');
 const recipeCardGrid = document.getElementById('recipeCardGrid');
 const recipesSection = document.getElementById('recipes');
@@ -206,9 +211,8 @@ const bookStage = document.getElementById('bookStage');
 const mapModal = document.getElementById('mapModal');
 const mapModalBackdrop = document.getElementById('mapModalBackdrop');
 const mapModalClose = document.getElementById('mapModalClose');
-const mapModalImage = document.getElementById('mapModalImage');
 const mapModalTitle = document.getElementById('mapModalTitle');
-const mapModalText = document.getElementById('mapModalText');
+const mapModalImage = document.getElementById('mapModalImage');
 
 function makeLink(recipe, index) {
   return `
@@ -216,7 +220,7 @@ function makeLink(recipe, index) {
       <div class="kicker">${String(index + 1).padStart(2, '0')} · ${recipe.country}</div>
       <strong>${recipe.title}</strong>
       <div style="margin-top:10px;display:flex;align-items:center;gap:10px;color:#6f5949;">
-        <img src="assets/flags/${recipe.code}.svg" alt="" width="22" height="16" style="border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.16)">
+        <img src="assets/flags/${recipe.code}.svg" alt="" width="28" height="20" style="border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.16)">
         <span>${recipe.cook}</span>
       </div>
     </a>`;
@@ -229,7 +233,7 @@ recipeCardGrid.innerHTML = recipes.map((recipe, index) => `
     <div class="kicker">${String(index + 1).padStart(2, '0')}</div>
     <h3 style="margin:.4rem 0 .3rem;font-size:1.15rem;">${recipe.title}</h3>
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-      <img src="assets/flags/${recipe.code}.svg" alt="" width="22" height="16" style="border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.16)">
+      <img src="assets/flags/${recipe.code}.svg" alt="" width="28" height="20" style="border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.16)">
       <span>${recipe.country}</span>
     </div>
   </a>
@@ -244,20 +248,16 @@ recipesSection.innerHTML = recipes.map((recipe, index) => `
       <div class="kicker">Recipe ${String(index + 1).padStart(2, '0')}</div>
       <h2>${recipe.title}</h2>
       <div class="recipe-topline">
-        <a class="badge flag-link" href="${countryLinks[recipe.code]}" target="_blank" rel="noopener noreferrer" aria-label="Open ${recipe.country} on Wikipedia">
-          <img src="assets/flags/${recipe.code}.svg" alt="Flag of ${recipe.country}">
-          <span>${recipe.country}</span>
+        <a class="country-card flag-link" href="${countryLinks[recipe.code]}" target="_blank" rel="noopener noreferrer" aria-label="Open ${recipe.country} on Wikipedia">
+          <img class="country-card-image flag-image" src="assets/flags/${recipe.code}.svg" alt="Flag of ${recipe.country}">
+          <span class="country-card-text"><strong>${recipe.country}</strong><span>Country page</span></span>
         </a>
-        <span class="badge">Cook: ${recipe.cook}</span>
+        <button class="country-card map-trigger" type="button" data-code="${recipe.code}" data-country="${recipe.country}" aria-label="Open map of ${recipe.country}">
+          <img class="country-card-image map-shape" src="${countryMaps[recipe.code]}" alt="Map of ${recipe.country}">
+          <span class="country-card-text"><strong>${recipe.country}</strong><span>Open map</span></span>
+        </button>
+        <span class="badge cook-badge">Cook: ${recipe.cook}</span>
       </div>
-      <button class="country-spot map-trigger" type="button" data-country="${recipe.country}" data-map="assets/maps/${recipe.code}.svg" aria-label="Open larger map of ${recipe.country}">
-        <div class="country-spot-map">
-          <div class="map-glow" aria-hidden="true"></div>
-          <img src="assets/maps/${recipe.code}.svg" alt="Map of ${recipe.country}">
-          <span class="country-pin" aria-hidden="true"></span>
-        </div>
-        <div class="country-spot-text">${recipe.country}<span class="country-spot-sub">Tap or click to enlarge map</span></div>
-      </button>
       <div class="recipe-grid">
         <div class="panel">
           <h3>Ingredients</h3>
@@ -289,21 +289,21 @@ openBook.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const introPage = document.querySelector('.intro-page');
     if (introPage) introPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 1650);
+  }, 1850);
 });
 
+function openMapModal(country, code) {
+  mapModalTitle.textContent = country;
+  mapModalImage.src = countryMaps[code];
+  mapModalImage.alt = `Map of ${country}`;
+  mapModal.classList.add('show');
+  mapModal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+}
 
-document.querySelectorAll('.map-trigger').forEach(trigger => {
+document.querySelectorAll('.map-trigger').forEach((trigger) => {
   trigger.addEventListener('click', () => {
-    const country = trigger.dataset.country;
-    const mapSrc = trigger.dataset.map;
-    mapModalImage.src = mapSrc;
-    mapModalImage.alt = `Map of ${country}`;
-    mapModalTitle.textContent = country;
-    mapModalText.textContent = `This dish comes from ${country}.`;
-    mapModal.classList.add('show');
-    mapModal.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('modal-open');
+    openMapModal(trigger.dataset.country, trigger.dataset.code);
   });
 });
 

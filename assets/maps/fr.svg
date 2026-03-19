@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 80">
-    <rect x="1" y="1" width="108" height="78" rx="16" fill="white" stroke="rgba(0,0,0,.12)"/>
-    <path d="M24 24 C38 14,56 16,62 30 C74 42,72 64,60 76 C44 90,22 82,18 64 C14 48,14 32,24 24 Z" fill="#d9e1fa" stroke="rgba(60,40,20,.18)" stroke-width="1.5"/>
-    <path d="M74 18c7 0 13 5 13 12 0 9-13 23-13 23S61 39 61 30c0-7 6-12 13-12z" fill="#d04f37"/>
-    <circle cx="74" cy="30" r="4.5" fill="white"/>
-    </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" role="img" aria-label="Map outline of fr">
+  <rect width="240" height="180" fill="none"/>
+  <g fill="#dce3fb" stroke="#5e4736" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M96 28 L126 34 L144 54 L138 84 L120 100 L90 96 L72 70 L78 42 Z"/> <path d="M154 104 L166 112 L160 126 L146 118 Z"/>
+  </g>
+</svg>
