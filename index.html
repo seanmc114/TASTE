@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="preopen">
   <div class="crest-watermark" aria-hidden="true"></div>
 
   <main>
@@ -22,27 +22,25 @@
             <div class="cover-text">
               <p class="eyebrow">Community recipe book</p>
               <h1>A Taste of Synge Street</h1>
-              <p class="sub">Click to open the book</p>
             </div>
           </div>
         </button>
+
         <div class="inside-book" id="insideBook">
           <div class="inside-spread">
             <div class="inside-page intro-page">
               <p class="mini">Welcome</p>
-              <h2>Flavours from our families</h2>
-              <p>
-                This digital edition keeps the warmth of the original student-made book, while giving it a more colourful,
-                launch-ready home online. The PDF includes 14 recipes presented by Nishim Sitoula, each built around cook,
-                country of origin, ingredients, method, why it is special, and a tip from the cook. fileciteturn2file0L1-L15
+              <h2>Welcome</h2>
+              <p class="intro-copy">
+                As a son, there can be few things better than arriving home to the smell of your favourite meal.
+                This collection is a tribute to those who make these marvellous meals for us. We hope you enjoy
+                them as much as we do.
               </p>
-              <p>
-                Use the contents page to jump to any dish. Each recipe below is presented as a richer web page with a photo,
-                country badge, styled layout, and warm Synge Street branding.
-              </p>
+              <p class="intro-signoff">Nishim.</p>
             </div>
+
             <div class="inside-page contents-page">
-              <p class="mini">Contents</p>
+              <p class="mini">Index</p>
               <h2>Jump to a recipe</h2>
               <div class="contents-grid" id="contentsGrid"></div>
             </div>
@@ -51,28 +49,25 @@
       </div>
     </section>
 
-    <nav class="top-nav" id="topNav">
+    <nav class="top-nav gated" id="topNav">
       <a href="#top">Cover</a>
       <a href="#contents">Contents</a>
       <a href="#recipes">Recipes</a>
     </nav>
 
-    <section class="contents-section" id="contents">
+    <section class="contents-section gated" id="contents">
       <div class="section-heading">
         <p class="mini">Index</p>
         <h2>Fourteen family recipes</h2>
-        <p>
-          The book features recipes from Italy, Germany, Romania, Moldova, Thailand, Nigeria, Algeria, Pakistan,
-          Afghanistan, China, France, Nepal, and Italy again, across 14 entries. fileciteturn2file0L16-L30
-        </p>
+        <p>Browse the collection by dish, cook, and country.</p>
       </div>
       <div class="recipe-card-grid" id="recipeCardGrid"></div>
     </section>
 
-    <section class="recipes-section" id="recipes"></section>
+    <section class="recipes-section gated" id="recipes"></section>
   </main>
 
-  <footer class="site-footer">©2026 Synge Street – Imagination and Perseverance</footer>
+  <footer class="site-footer gated">©2026 Synge Street – Imagination and Perseverance</footer>
 
   <script src="script.js"></script>
 </body>

@@ -271,9 +271,20 @@ recipesSection.innerHTML = recipes.map((recipe, index) => `
     </div>
   </article>`).join('');
 
-openBook.addEventListener('click', () => {
+function unlockBook() {
   bookStage.classList.add('open');
+  document.body.classList.remove('preopen');
+  document.body.classList.add('book-open');
   setTimeout(() => {
-    document.getElementById('contents').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, window.innerWidth < 700 ? 500 : 700);
+    document.getElementById('top').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 80);
+}
+
+openBook.addEventListener('click', unlockBook);
+
+document.addEventListener('keydown', (event) => {
+  if ((event.key === 'Enter' || event.key === ' ') && !document.body.classList.contains('book-open')) {
+    event.preventDefault();
+    unlockBook();
+  }
 });
