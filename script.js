@@ -1,57 +1,53 @@
 const recipes = [
   {
-    id: 'lasagne',
-    title: 'Mrs Doyle’s Lasagne',
-    cook: 'Mrs Doyle',
+    id: 'risotto',
+    title: 'Mrs Ciffo’s Risotto',
+    cook: 'Mrs Ciffo',
     country: 'Italy',
-    flag: 'assets/flags/italy.svg',
-    map: 'assets/maps/italy.svg',
-    why: 'A cosy family favourite, perfect for gathering around the table.',
-    tip: 'Let it rest before cutting so the layers hold nicely.',
-    ingredients: ['minced beef', 'lasagne sheets', 'tomato sauce', 'white sauce', 'onion', 'garlic', 'cheese'],
-    method: ['Cook the beef with onion, garlic, and tomato sauce.', 'Prepare the white sauce.', 'Layer sauce, pasta sheets, and cheese in an oven dish.', 'Repeat the layers until the dish is full.', 'Bake until bubbling and golden on top.'],
+    code: 'it',
+    why: 'A creamy family favourite that feels both comforting and special.',
+    tip: 'Stir gently and keep adding stock a little at a time.',
+    ingredients: ['rice', 'leek', 'butter', 'stock cube', 'water'],
+    method: ['Melt the butter and cook the leek gently.', 'Add the rice and coat it well.', 'Pour in hot stock a little at a time, stirring often.', 'Cook until creamy and tender.'],
     image: 'assets/photos/recipe01.png',
-    accent: '#b94c47'
+    accent: '#c86c4b'
   },
   {
-    id: 'fried-rice',
-    title: 'Mrs Mali’s Fried Rice',
-    cook: 'Mrs Mali',
+    id: 'vanillekipferl',
+    title: 'Mrs Kürschner’s Vanillekipferl',
+    cook: 'Mrs Kürschner',
     country: 'Germany',
-    flag: 'assets/flags/germany.svg',
-    map: 'assets/maps/germany.svg',
-    why: 'Quick, colourful, and easy to customise with whatever vegetables you have.',
-    tip: 'Use cooled rice so the grains stay separate while frying.',
-    ingredients: ['cooked rice', 'mixed vegetables', 'eggs', 'soy sauce', 'spring onion', 'oil'],
-    method: ['Heat the oil in a pan.', 'Cook the vegetables until just soft.', 'Add the rice and stir-fry well.', 'Push everything aside and scramble the eggs.', 'Mix together and season with soy sauce.'],
+    code: 'de',
+    why: 'A festive biscuit with a soft vanilla sweetness and a beautiful finish.',
+    tip: 'Dust generously while still slightly warm.',
+    ingredients: ['flour', 'ground almonds', 'butter', 'sugar', 'vanilla sugar'],
+    method: ['Mix the dough until soft and smooth.', 'Shape into small crescents.', 'Bake until pale golden.', 'Finish with vanilla sugar.'],
     image: 'assets/photos/recipe02.png',
-    accent: '#c78632'
+    accent: '#b07c48'
   },
   {
     id: 'sarmale',
-    title: 'Mrs Dima’s Sarmale',
-    cook: 'Mrs Dima',
+    title: 'Mrs Darie’s Sarmale',
+    cook: 'Mrs Darie',
     country: 'Romania',
-    flag: 'assets/flags/romania.svg',
-    map: 'assets/maps/romania.svg',
-    why: 'A treasured dish often made for family occasions and shared meals.',
-    tip: 'Roll tightly and cook gently for the best texture.',
-    ingredients: ['cabbage leaves', 'minced meat', 'rice', 'onion', 'tomato sauce', 'herbs'],
-    method: ['Prepare the filling with meat, rice, onion, and herbs.', 'Soften the cabbage leaves if needed.', 'Wrap spoonfuls of filling inside the leaves.', 'Arrange in a pot with sauce.', 'Cook slowly until tender and full of flavour.'],
+    code: 'ro',
+    why: 'A celebratory dish with deep family roots and great comfort in every bite.',
+    tip: 'Let the rolls simmer gently so the filling stays tender.',
+    ingredients: ['rice', 'minced meat', 'onion', 'herbs', 'pickled cabbage leaves'],
+    method: ['Prepare the filling with rice, meat, and onion.', 'Wrap the filling in cabbage leaves.', 'Layer in a pot and cook slowly until rich and tender.'],
     image: 'assets/photos/recipe03.png',
-    accent: '#3f72bf'
+    accent: '#b54d4e'
   },
   {
-    id: 'rice-stuffed-vine-leaves',
-    title: 'Mrs Doroftei’s Rice Stuffed Vine Leaves',
-    cook: 'Mrs Doroftei',
+    id: 'sarmale-dolma',
+    title: 'Mrs Pantea’s Sarmale cu Frunză de Viță-de-vie',
+    cook: 'Mrs Pantea',
     country: 'Moldova',
-    flag: 'assets/flags/moldova.svg',
-    map: 'assets/maps/moldova.svg',
-    why: 'A beautifully traditional dish with a homemade feel.',
-    tip: 'Line the pot with extra leaves to protect the rolls as they cook.',
-    ingredients: ['vine leaves', 'rice', 'onion', 'carrot', 'tomato', 'oil', 'herbs'],
-    method: ['Cook the rice mixture with vegetables and seasoning.', 'Place filling into each vine leaf.', 'Roll neatly and arrange in a pot.', 'Add a little liquid and cook gently.', 'Serve warm when tender.'],
+    code: 'md',
+    why: 'A dish full of home flavour, shared at family tables and special gatherings.',
+    tip: 'Line the pot with spare leaves and cook gently.',
+    ingredients: ['vine leaves', 'rice', 'meat', 'onion', 'herbs'],
+    method: ['Prepare a seasoned rice filling.', 'Wrap the filling in vine leaves.', 'Arrange in a pot and simmer until soft and fragrant.'],
     image: 'assets/photos/recipe04.png',
     accent: '#9c503d'
   },
@@ -60,12 +56,11 @@ const recipes = [
     title: 'Mrs Sonina’s Banana Waffles',
     cook: 'Mrs Sonina',
     country: 'Thailand',
-    flag: 'assets/flags/thailand.svg',
-    map: 'assets/maps/thailand.svg',
-    why: 'A cheerful breakfast dish with lots of topping options.',
-    tip: 'A little wholewheat flour adds extra texture and fibre.',
+    code: 'th',
+    why: 'A cheerful breakfast favourite with lots of room for toppings.',
+    tip: 'A little cinnamon lifts the flavour beautifully.',
     ingredients: ['ripe banana', 'self-raising flour', 'butter', 'cinnamon', 'eggs'],
-    method: ['Mash the banana.', 'Mix with the remaining ingredients into a smooth batter.', 'Rest briefly.', 'Cook in a hot waffle iron until golden.', 'Serve with your favourite toppings.'],
+    method: ['Mash the banana and mix the batter.', 'Rest briefly.', 'Cook in a hot waffle iron until golden.'],
     image: 'assets/photos/recipe05.png',
     accent: '#cd5f43'
   },
@@ -74,12 +69,11 @@ const recipes = [
     title: 'Mrs Nwogu’s Jollof Rice',
     cook: 'Mrs Nwogu',
     country: 'Nigeria',
-    flag: 'assets/flags/nigeria.svg',
-    map: 'assets/maps/nigeria.svg',
-    why: 'Rich in colour and aroma, and full of home comfort.',
-    tip: 'Let the rice rest covered before fluffing it.',
-    ingredients: ['tomatoes', 'red pepper', 'habanero', 'garlic', 'ginger', 'olive oil', 'onion', 'tomato paste', 'paprika', 'basmati rice', 'bouillon'],
-    method: ['Blend the tomato and pepper mixture.', 'Cook onion, tomato paste, and spices.', 'Stir in the rice.', 'Add the blended sauce and simmer gently.', 'Rest off the heat, then fluff and serve.'],
+    code: 'ng',
+    why: 'A bold, much-loved dish that brings the taste and feeling of home straight to the table.',
+    tip: 'Let the rice rest before fluffing it.',
+    ingredients: ['tomatoes', 'red pepper', 'garlic', 'ginger', 'onion', 'tomato paste', 'rice', 'bouillon'],
+    method: ['Blend the tomato mixture.', 'Cook onions, paste, and spices.', 'Add rice and sauce.', 'Simmer gently until the rice is cooked.', 'Rest and fluff before serving.'],
     image: 'assets/photos/recipe06.png',
     accent: '#55884f'
   },
@@ -88,12 +82,11 @@ const recipes = [
     title: 'Mrs Benaceur’s Chaghchouka',
     cook: 'Mrs Benaceur',
     country: 'Algeria',
-    flag: 'assets/flags/algeria.svg',
-    map: 'assets/maps/algeria.svg',
-    why: 'Quick, warm, and full of North African flavour.',
+    code: 'dz',
+    why: 'Quick, flavourful, and perfect for sharing around the table.',
     tip: 'Serve with bread for dipping and sharing.',
-    ingredients: ['olive oil', 'onion', 'red and green peppers', 'tomatoes', 'garlic', 'cumin', 'paprika', 'coriander', 'eggs'],
-    method: ['Cook the onion and peppers.', 'Add garlic, tomatoes, and spices.', 'Simmer until thick and fragrant.', 'Make small wells and crack in the eggs.', 'Cook until the eggs are just set.'],
+    ingredients: ['olive oil', 'onion', 'peppers', 'tomatoes', 'garlic', 'cumin', 'paprika', 'eggs'],
+    method: ['Cook onion and peppers.', 'Add tomatoes, garlic, and spices.', 'Make small wells.', 'Crack in the eggs and cook until set.'],
     image: 'assets/photos/recipe07.png',
     accent: '#4b8a64'
   },
@@ -102,12 +95,11 @@ const recipes = [
     title: 'Mrs Benaceur’s Maqroud',
     cook: 'Mrs Benaceur',
     country: 'Algeria',
-    flag: 'assets/flags/algeria.svg',
-    map: 'assets/maps/algeria.svg',
-    why: 'A celebration sweet with a lovely balance of crunch, dates, and honey.',
-    tip: 'Keep the honey warm so the fried pieces coat well.',
-    ingredients: ['semolina', 'flour', 'melted butter', 'orange blossom water', 'date paste', 'cinnamon', 'oil for frying', 'warm honey'],
-    method: ['Rub the semolina and flour with butter.', 'Add liquid and let the dough rest.', 'Make a smooth date filling.', 'Wrap the filling inside the dough.', 'Cut into shapes, fry until golden, and dip in warm honey.'],
+    code: 'dz',
+    why: 'A celebration sweet with rich date filling and a honeyed finish.',
+    tip: 'Keep the honey warm and let the dough rest.',
+    ingredients: ['semolina', 'flour', 'butter', 'date paste', 'cinnamon', 'orange blossom water', 'honey'],
+    method: ['Make the dough.', 'Prepare the date filling.', 'Shape and cut into diamonds.', 'Fry until golden.', 'Dip in warm honey.'],
     image: 'assets/photos/recipe08.png',
     accent: '#b36d36'
   },
@@ -116,12 +108,11 @@ const recipes = [
     title: 'Mrs Khan’s Chicken Biryani',
     cook: 'Mrs Khan',
     country: 'Pakistan',
-    flag: 'assets/flags/pakistan.svg',
-    map: 'assets/maps/pakistan.svg',
-    why: 'A layered dish famous for its flavour, colour, and aroma.',
-    tip: 'Soak the basmati rice first and avoid overcooking it before layering.',
-    ingredients: ['chicken', 'rice', 'onions', 'tomatoes', 'garlic paste', 'ginger paste', 'red chilli powder', 'turmeric', 'biryani masala'],
-    method: ['Soak and prepare the rice.', 'Fry onions until golden.', 'Cook the chicken with garlic, ginger, tomato, and spices.', 'Boil the rice until partly cooked.', 'Layer rice and chicken and finish on low heat.'],
+    code: 'pk',
+    why: 'Famous for its aroma, colour, and the sense of occasion it brings.',
+    tip: 'Soak the basmati rice and avoid overcooking it before layering.',
+    ingredients: ['chicken', 'basmati rice', 'onions', 'tomatoes', 'garlic', 'ginger', 'biryani masala'],
+    method: ['Wash and soak the rice.', 'Cook the chicken with onion, tomato, and spices.', 'Boil the rice until almost done.', 'Layer and steam gently until finished.'],
     image: 'assets/photos/recipe09.png',
     accent: '#48794d'
   },
@@ -130,12 +121,11 @@ const recipes = [
     title: 'Mrs Nilofar’s Golden Cookies',
     cook: 'Mrs Nilofar',
     country: 'Afghanistan',
-    flag: 'assets/flags/afghanistan.svg',
-    map: 'assets/maps/afghanistan.svg',
-    why: 'Simple, homemade, and made from ingredients many families already have.',
-    tip: 'Try different nuts on top for variety.',
-    ingredients: ['eggs', 'sugar', 'oil', 'flour', 'baking powder', 'cardamom powder', 'egg yolk', 'milk'],
-    method: ['Beat eggs, sugar, and oil until creamy.', 'Mix in the dry ingredients.', 'Shape into small balls and flatten slightly.', 'Add topping if desired.', 'Bake until lightly golden.'],
+    code: 'af',
+    why: 'Simple, generous, and made from ingredients many families already have at home.',
+    tip: 'Try adding pistachios, almonds, or cashews.',
+    ingredients: ['eggs', 'sugar', 'oil', 'flour', 'baking powder', 'cardamom powder'],
+    method: ['Beat eggs, sugar, and oil.', 'Mix in the dry ingredients.', 'Shape into small rounds.', 'Bake until lightly golden.'],
     image: 'assets/photos/recipe10.png',
     accent: '#8f4a35'
   },
@@ -144,12 +134,11 @@ const recipes = [
     title: 'Mrs Li’s Chinese Dumplings with Chilli Oil',
     cook: 'Mrs Xue Li',
     country: 'China',
-    flag: 'assets/flags/china.svg',
-    map: 'assets/maps/china.svg',
-    why: 'A traditional family dish often made together at home.',
-    tip: 'Fresh garlic and chilli oil really lift the flavour.',
+    code: 'cn',
+    why: 'A traditional family dish that is often made together and shared together.',
+    tip: 'Fresh garlic and chilli oil lift the flavour.',
     ingredients: ['pork mince', 'dumpling wrappers', 'spring onion', 'soy sauce', 'garlic', 'chilli oil'],
-    method: ['Mix the filling ingredients.', 'Wrap small spoonfuls in dumpling wrappers.', 'Boil or steam until cooked through.', 'Serve hot with chilli oil and soy sauce.'],
+    method: ['Mix the filling.', 'Wrap the dumplings.', 'Boil until cooked.', 'Serve with chilli oil and soy sauce.'],
     image: 'assets/photos/recipe11.png',
     accent: '#bb4337'
   },
@@ -158,12 +147,11 @@ const recipes = [
     title: 'Mrs Phillips’ Garlic/Cheese Potatoes',
     cook: 'Mrs Phillips',
     country: 'France',
-    flag: 'assets/flags/france.svg',
-    map: 'assets/maps/france.svg',
-    why: 'A tasty and filling oven dish that feels very comforting.',
-    tip: 'Keep an eye on the cream as it bakes.',
-    ingredients: ['potatoes', 'cheese', 'double cream', 'garlic or garlic purée'],
-    method: ['Slice and rinse the potatoes.', 'Layer them in an oven dish.', 'Add cream, garlic, and cheese.', 'Bake until soft and golden.', 'Finish with extra cheese if you like.'],
+    code: 'fr',
+    why: 'Tasty, filling, and ideal beside a family meal.',
+    tip: 'Keep an eye on the cream while it bakes.',
+    ingredients: ['potatoes', 'cheese', 'double cream', 'garlic'],
+    method: ['Slice the potatoes.', 'Layer in a baking dish.', 'Add cream, garlic, and cheese.', 'Bake until bubbling and golden.'],
     image: 'assets/photos/recipe12.png',
     accent: '#5670a5'
   },
@@ -172,12 +160,11 @@ const recipes = [
     title: 'Mrs Kadariya’s Potatoes with Cumin',
     cook: 'Mrs Kalpana Kadariya',
     country: 'Nepal',
-    flag: 'assets/flags/nepal.svg',
-    map: 'assets/maps/nepal.svg',
-    why: 'Quick, homemade, and easy to serve beside many other dishes.',
+    code: 'np',
+    why: 'Homemade, quick, and ready to go with almost anything.',
     tip: 'Adjust the spice, salt, and turmeric to taste.',
     ingredients: ['potatoes', 'cumin seeds', 'salt', 'turmeric powder', 'coriander'],
-    method: ['Boil and peel the potatoes.', 'Cut into cubes.', 'Heat oil and add cumin seeds.', 'Fry the potatoes.', 'Season with salt, turmeric, and cumin.', 'Finish with coriander.'],
+    method: ['Boil and peel the potatoes.', 'Cut into cubes.', 'Heat oil and add cumin seeds.', 'Fry the potatoes.', 'Add seasoning and finish with coriander.'],
     image: 'assets/photos/recipe13.png',
     accent: '#c58b3c'
   },
@@ -186,12 +173,11 @@ const recipes = [
     title: 'Mrs Doyle’s Spaghetti with Meatballs',
     cook: 'Mrs Doyle',
     country: 'Italy',
-    flag: 'assets/flags/italy.svg',
-    map: 'assets/maps/italy.svg',
-    why: 'Easy to make, cheerful to serve, and always a crowd-pleaser.',
-    tip: 'Add any extra seasoning or herbs you enjoy.',
+    code: 'it',
+    why: 'A simple, classic dish that always feels welcome on the table.',
+    tip: 'Add any extra seasoning you like to make it your own.',
     ingredients: ['spaghetti', 'pasta sauce', 'meatballs', 'salt'],
-    method: ['Boil the spaghetti.', 'Brown the meatballs in a pan.', 'Warm the sauce and season it.', 'Combine and serve hot.'],
+    method: ['Boil the spaghetti.', 'Cook the meatballs until browned.', 'Warm the sauce.', 'Bring everything together and serve.'],
     image: 'assets/photos/recipe14.png',
     accent: '#b34f47'
   }
@@ -206,48 +192,47 @@ const bookStage = document.getElementById('bookStage');
 function makeLink(recipe, index) {
   return `
     <a href="#${recipe.id}">
-      <div class="mini">${String(index + 1).padStart(2, '0')} · ${recipe.country}</div>
+      <div class="kicker">${String(index + 1).padStart(2, '0')} · ${recipe.country}</div>
       <strong>${recipe.title}</strong>
-      <div style="margin-top:8px;color:#6f5949;display:flex;align-items:center;gap:8px;">
-        <img src="${recipe.flag}" alt="${recipe.country} flag" style="width:22px;height:15px;border-radius:3px;object-fit:cover;" />
+      <div style="margin-top:10px;display:flex;align-items:center;gap:10px;color:#6f5949;">
+        <img src="assets/flags/${recipe.code}.svg" alt="" width="22" height="16" style="border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.16)">
+        <img src="assets/maps/${recipe.code}.svg" alt="" width="26" height="20" style="border-radius:7px;box-shadow:0 1px 3px rgba(0,0,0,.12)">
         <span>${recipe.cook}</span>
       </div>
     </a>`;
 }
 
 contentsGrid.innerHTML = recipes.map(makeLink).join('');
+
 recipeCardGrid.innerHTML = recipes.map((recipe, index) => `
   <a class="recipe-link-card" href="#${recipe.id}">
-    <div class="mini">${String(index + 1).padStart(2, '0')}</div>
+    <div class="kicker">${String(index + 1).padStart(2, '0')}</div>
     <h3 style="margin:.4rem 0 .3rem;font-size:1.15rem;">${recipe.title}</h3>
-    <div style="display:flex;align-items:center;gap:8px;">
-      <img src="${recipe.flag}" alt="${recipe.country} flag" style="width:22px;height:15px;border-radius:3px;object-fit:cover;" />
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <img src="assets/flags/${recipe.code}.svg" alt="" width="22" height="16" style="border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.16)">
+      <img src="assets/maps/${recipe.code}.svg" alt="" width="26" height="20" style="border-radius:7px;box-shadow:0 1px 3px rgba(0,0,0,.12)">
       <span>${recipe.country}</span>
     </div>
-  </a>`).join('');
+  </a>
+`).join('');
 
 recipesSection.innerHTML = recipes.map((recipe, index) => `
   <article class="recipe-layout" id="${recipe.id}" style="--accent:${recipe.accent}">
-    <div class="recipe-media-wrap">
-      <div class="recipe-media ${recipe.image ? '' : 'placeholder'}" ${recipe.image ? '' : `data-title="${recipe.title}"`}>
-        ${recipe.image ? `<img src="${recipe.image}" alt="${recipe.title}" />` : ''}
-      </div>
-      <div class="recipe-sidebits">
-        <div class="flag-card">
-          <img src="${recipe.flag}" alt="${recipe.country} flag" />
-          <div class="flag-label">Flag</div>
-        </div>
-        <div class="map-card">
-          <img src="${recipe.map}" alt="Map card for ${recipe.country}" />
-          <div class="map-label">Map</div>
-        </div>
-      </div>
+    <div class="recipe-media">
+      <img src="${recipe.image}" alt="${recipe.title}" />
     </div>
     <div class="recipe-body">
-      <div class="mini">Recipe ${String(index + 1).padStart(2, '0')}</div>
+      <div class="kicker">Recipe ${String(index + 1).padStart(2, '0')}</div>
       <h2>${recipe.title}</h2>
       <div class="recipe-topline">
-        <span class="badge"><img src="${recipe.flag}" alt="${recipe.country} flag" /> ${recipe.country}</span>
+        <span class="badge">
+          <img src="assets/flags/${recipe.code}.svg" alt="">
+          <span>${recipe.country}</span>
+        </span>
+        <span class="badge">
+          <img class="map" src="assets/maps/${recipe.code}.svg" alt="">
+          <span>${recipe.country}</span>
+        </span>
         <span class="badge">Cook: ${recipe.cook}</span>
       </div>
       <div class="recipe-grid">
@@ -269,22 +254,14 @@ recipesSection.innerHTML = recipes.map((recipe, index) => `
         </div>
       </div>
     </div>
-  </article>`).join('');
+  </article>
+`).join('');
 
-function unlockBook() {
+openBook.addEventListener('click', () => {
+  document.body.classList.remove('locked');
+  document.body.classList.add('unlocked');
   bookStage.classList.add('open');
-  document.body.classList.remove('preopen');
-  document.body.classList.add('book-open');
   setTimeout(() => {
-    document.getElementById('top').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 80);
-}
-
-openBook.addEventListener('click', unlockBook);
-
-document.addEventListener('keydown', (event) => {
-  if ((event.key === 'Enter' || event.key === ' ') && !document.body.classList.contains('book-open')) {
-    event.preventDefault();
-    unlockBook();
-  }
+    document.getElementById('insideBook').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 1100);
 });

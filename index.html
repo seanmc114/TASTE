@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="preopen">
+<body class="locked">
   <div class="crest-watermark" aria-hidden="true"></div>
 
   <main>
@@ -19,9 +19,9 @@
           <div class="cover-front">
             <img src="assets/cover.png" alt="A Taste of Synge Street cover" class="cover-image" />
             <div class="cover-overlay"></div>
-            <div class="cover-text">
-              <p class="eyebrow">Community recipe book</p>
-              <h1>A Taste of Synge Street</h1>
+            <div class="cover-hint" aria-hidden="true">
+              <span class="hint-dot"></span>
+              <span>Tap or click the cover to open</span>
             </div>
           </div>
         </button>
@@ -29,19 +29,22 @@
         <div class="inside-book" id="insideBook">
           <div class="inside-spread">
             <div class="inside-page intro-page">
-              <p class="mini">Welcome</p>
               <h2>Welcome</h2>
-              <p class="intro-copy">
+              <p>
                 As a son, there can be few things better than arriving home to the smell of your favourite meal.
-                This collection is a tribute to those who make these marvellous meals for us. We hope you enjoy
-                them as much as we do.
+                This collection is a tribute to those who make these marvellous meals for us. We hope you enjoy them
+                as much as we do.
               </p>
-              <p class="intro-signoff">Nishim.</p>
+              <p>
+                It is also a small thank you to the mothers, fathers, guardians and family members whose care so often
+                reaches us through food.
+              </p>
+              <p class="signature">Nishim</p>
             </div>
 
             <div class="inside-page contents-page">
-              <p class="mini">Index</p>
-              <h2>Jump to a recipe</h2>
+              <h2>Index</h2>
+              <p class="intro-note">Jump straight to any recipe.</p>
               <div class="contents-grid" id="contentsGrid"></div>
             </div>
           </div>
@@ -49,25 +52,29 @@
       </div>
     </section>
 
-    <nav class="top-nav gated" id="topNav">
-      <a href="#top">Cover</a>
-      <a href="#contents">Contents</a>
-      <a href="#recipes">Recipes</a>
-    </nav>
+    <div class="post-cover" id="postCover">
+      <nav class="top-nav" id="topNav">
+        <a href="#top">Cover</a>
+        <a href="#contents">Index</a>
+        <a href="#recipes">Recipes</a>
+      </nav>
 
-    <section class="contents-section gated" id="contents">
-      <div class="section-heading">
-        <p class="mini">Index</p>
-        <h2>Fourteen family recipes</h2>
-        <p>Browse the collection by dish, cook, and country.</p>
-      </div>
-      <div class="recipe-card-grid" id="recipeCardGrid"></div>
-    </section>
+      <section class="contents-section" id="contents">
+        <div class="section-heading">
+          <h2>Fourteen family recipes</h2>
+          <p>
+            From Italy to Nepal, these dishes bring together family favourites, comfort food,
+            celebration food and recipes that carry memories from home.
+          </p>
+        </div>
+        <div class="recipe-card-grid" id="recipeCardGrid"></div>
+      </section>
 
-    <section class="recipes-section gated" id="recipes"></section>
+      <section class="recipes-section" id="recipes"></section>
+    </div>
   </main>
 
-  <footer class="site-footer gated">©2026 Synge Street – Imagination and Perseverance</footer>
+  <footer class="site-footer">©2026 Synge Street – Imagination and Perseverance</footer>
 
   <script src="script.js"></script>
 </body>
