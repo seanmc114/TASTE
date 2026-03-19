@@ -1,8 +1,8 @@
 const recipes = [
   {
     id: 'risotto',
-    title: 'Mrs Ciffo’s Risotto',
-    cook: 'Mrs Ciffo',
+    title: "Mrs Mariotto's Risottto",
+    cook: 'Mrs Mariotto',
     country: 'Italy',
     code: 'it',
     why: 'A creamy family favourite that feels both comforting and special.',
@@ -14,8 +14,8 @@ const recipes = [
   },
   {
     id: 'vanillekipferl',
-    title: 'Mrs Kürschner’s Vanillekipferl',
-    cook: 'Mrs Kürschner',
+    title: "Mrs Beglan's Vanillekipferl (Vanilla Crescents)",
+    cook: 'Mrs Beglan',
     country: 'Germany',
     code: 'de',
     why: 'A festive biscuit with a soft vanilla sweetness and a beautiful finish.',
@@ -27,8 +27,8 @@ const recipes = [
   },
   {
     id: 'sarmale',
-    title: 'Mrs Darie’s Sarmale',
-    cook: 'Mrs Darie',
+    title: "Mrs Lupu's Sarmale",
+    cook: 'Mrs Lupu',
     country: 'Romania',
     code: 'ro',
     why: 'A celebratory dish with deep family roots and great comfort in every bite.',
@@ -40,8 +40,8 @@ const recipes = [
   },
   {
     id: 'sarmale-dolma',
-    title: 'Mrs Pantea’s Sarmale cu Frunză de Viță-de-vie',
-    cook: 'Mrs Pantea',
+    title: "Mrs andreev's Sarmale in foi de vita",
+    cook: 'Mrs andreev',
     country: 'Moldova',
     code: 'md',
     why: 'A dish full of home flavour, shared at family tables and special gatherings.',
@@ -53,7 +53,7 @@ const recipes = [
   },
   {
     id: 'banana-waffles',
-    title: 'Mrs Sonina’s Banana Waffles',
+    title: "Mrs Sonina's Banana Waffles",
     cook: 'Mrs Sonina',
     country: 'Thailand',
     code: 'th',
@@ -66,7 +66,7 @@ const recipes = [
   },
   {
     id: 'jollof',
-    title: 'Mrs Nwogu’s Jollof Rice',
+    title: "Mrs Nwogu's Jollof Rice",
     cook: 'Mrs Nwogu',
     country: 'Nigeria',
     code: 'ng',
@@ -79,7 +79,7 @@ const recipes = [
   },
   {
     id: 'chaghchouka',
-    title: 'Mrs Benaceur’s Chaghchouka',
+    title: "Mrs Benaceur's Chaghchouka",
     cook: 'Mrs Benaceur',
     country: 'Algeria',
     code: 'dz',
@@ -92,7 +92,7 @@ const recipes = [
   },
   {
     id: 'maqroud',
-    title: 'Mrs Benaceur’s Maqroud',
+    title: "Mrs Benaceur's Maqroud",
     cook: 'Mrs Benaceur',
     country: 'Algeria',
     code: 'dz',
@@ -105,7 +105,7 @@ const recipes = [
   },
   {
     id: 'biryani',
-    title: 'Mrs Khan’s Chicken Biryani',
+    title: "Mrs Khan's Chicken Biryani",
     cook: 'Mrs Khan',
     country: 'Pakistan',
     code: 'pk',
@@ -118,8 +118,8 @@ const recipes = [
   },
   {
     id: 'golden-cookies',
-    title: 'Mrs Nilofar’s Golden Cookies',
-    cook: 'Mrs Nilofar',
+    title: "Mrs Khorrami's Golden Cookies",
+    cook: 'Mrs Khorrami',
     country: 'Afghanistan',
     code: 'af',
     why: 'Simple, generous, and made from ingredients many families already have at home.',
@@ -131,8 +131,8 @@ const recipes = [
   },
   {
     id: 'dumplings',
-    title: 'Mrs Li’s Chinese Dumplings with Chilli Oil',
-    cook: 'Mrs Xue Li',
+    title: "Mrs Li's Chinese Dumplings with Chili Oil",
+    cook: 'Mrs Li',
     country: 'China',
     code: 'cn',
     why: 'A traditional family dish that is often made together and shared together.',
@@ -144,7 +144,7 @@ const recipes = [
   },
   {
     id: 'garlic-potatoes',
-    title: 'Mrs Phillips’ Garlic/Cheese Potatoes',
+    title: "Mrs Phillips' Garlic Cheese Potatoes",
     cook: 'Mrs Phillips',
     country: 'France',
     code: 'fr',
@@ -157,8 +157,8 @@ const recipes = [
   },
   {
     id: 'cumin-potatoes',
-    title: 'Mrs Kadariya’s Potatoes with Cumin',
-    cook: 'Mrs Kalpana Kadariya',
+    title: "Mrs Kadariya's Potatoes with Cumin",
+    cook: 'Mrs Kadariya',
     country: 'Nepal',
     code: 'np',
     why: 'Homemade, quick, and ready to go with almost anything.',
@@ -170,7 +170,7 @@ const recipes = [
   },
   {
     id: 'spaghetti',
-    title: 'Mrs Doyle’s Spaghetti with Meatballs',
+    title: "Mrs Doyle's Spaghetti with Meatballs",
     cook: 'Mrs Doyle',
     country: 'Italy',
     code: 'it',
@@ -196,7 +196,6 @@ function makeLink(recipe, index) {
       <strong>${recipe.title}</strong>
       <div style="margin-top:10px;display:flex;align-items:center;gap:10px;color:#6f5949;">
         <img src="assets/flags/${recipe.code}.svg" alt="" width="22" height="16" style="border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.16)">
-        <img src="assets/maps/${recipe.code}.svg" alt="" width="26" height="20" style="border-radius:7px;box-shadow:0 1px 3px rgba(0,0,0,.12)">
         <span>${recipe.cook}</span>
       </div>
     </a>`;
@@ -210,7 +209,6 @@ recipeCardGrid.innerHTML = recipes.map((recipe, index) => `
     <h3 style="margin:.4rem 0 .3rem;font-size:1.15rem;">${recipe.title}</h3>
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
       <img src="assets/flags/${recipe.code}.svg" alt="" width="22" height="16" style="border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.16)">
-      <img src="assets/maps/${recipe.code}.svg" alt="" width="26" height="20" style="border-radius:7px;box-shadow:0 1px 3px rgba(0,0,0,.12)">
       <span>${recipe.country}</span>
     </div>
   </a>
@@ -229,11 +227,14 @@ recipesSection.innerHTML = recipes.map((recipe, index) => `
           <img src="assets/flags/${recipe.code}.svg" alt="">
           <span>${recipe.country}</span>
         </span>
-        <span class="badge">
-          <img class="map" src="assets/maps/${recipe.code}.svg" alt="">
-          <span>${recipe.country}</span>
-        </span>
         <span class="badge">Cook: ${recipe.cook}</span>
+      </div>
+      <div class="country-spot">
+        <div class="country-spot-map">
+          <img src="assets/maps/${recipe.code}.svg" alt="">
+          <span class="country-pin" aria-hidden="true"></span>
+        </div>
+        <div class="country-spot-text">${recipe.country}</div>
       </div>
       <div class="recipe-grid">
         <div class="panel">
@@ -258,10 +259,13 @@ recipesSection.innerHTML = recipes.map((recipe, index) => `
 `).join('');
 
 openBook.addEventListener('click', () => {
+  if (bookStage.classList.contains('open')) return;
   document.body.classList.remove('locked');
   document.body.classList.add('unlocked');
   bookStage.classList.add('open');
   setTimeout(() => {
-    document.getElementById('insideBook').scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, 1100);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const introPage = document.querySelector('.intro-page');
+    if (introPage) introPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 1650);
 });
