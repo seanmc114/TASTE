@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" role="img" aria-label="Map outline of de">
-  <rect width="240" height="180" fill="none"/>
-  <g fill="#eadfca" stroke="#5e4736" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
-    <path d="M110 18 L134 22 L148 40 L144 58 L154 74 L146 100 L154 120 L142 144 L120 154 L98 144 L86 122 L74 104 L78 84 L68 62 L78 42 L92 28 Z"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 80">
+    <rect x="1" y="1" width="108" height="78" rx="16" fill="white" stroke="rgba(0,0,0,.12)"/>
+    <path d="M26 24 C38 14,54 16,62 28 C72 38,74 56,64 70 C56 82,40 88,30 78 C18 70,16 54,18 42 C14 34,18 28,26 24 Z" fill="#ece4be" stroke="rgba(60,40,20,.18)" stroke-width="1.5"/>
+    <path d="M74 18c7 0 13 5 13 12 0 9-13 23-13 23S61 39 61 30c0-7 6-12 13-12z" fill="#d04f37"/>
+    <circle cx="74" cy="30" r="4.5" fill="white"/>
+    </svg>

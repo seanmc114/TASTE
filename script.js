@@ -199,8 +199,41 @@ const countryLinks = {
   np: 'https://en.wikipedia.org/wiki/Nepal'
 };
 
-const countryMaps = Object.fromEntries(
-  Object.keys(countryLinks).map((code) => [code, `assets/maps/${code}.svg`])
+const countryShapeFiles = {
+  it: 'Italy (orthographic projection).svg',
+  de: 'Germany (orthographic projection).svg',
+  ro: 'Romania (orthographic projection).svg',
+  md: 'Moldova (orthographic projection).svg',
+  th: 'Thailand (orthographic projection).svg',
+  ng: 'Nigeria (orthographic projection).svg',
+  dz: 'Algeria (orthographic projection).svg',
+  pk: 'Pakistan (orthographic projection).svg',
+  af: 'Afghanistan (orthographic projection).svg',
+  cn: 'China (orthographic projection).svg',
+  fr: 'France (orthographic projection).svg',
+  np: 'Nepal (orthographic projection).svg'
+};
+
+const countryBounds = {
+  it: [[35.49, 6.63], [47.10, 18.52]],
+  de: [[47.27, 5.87], [55.06, 15.04]],
+  ro: [[43.62, 20.22], [48.27, 29.71]],
+  md: [[45.47, 26.62], [48.49, 30.17]],
+  th: [[5.61, 97.35], [20.46, 105.64]],
+  ng: [[4.24, 2.67], [13.89, 14.68]],
+  dz: [[18.97, -8.67], [37.09, 11.99]],
+  pk: [[23.69, 60.87], [37.08, 77.84]],
+  af: [[29.38, 60.49], [38.49, 74.89]],
+  cn: [[18.16, 73.50], [53.56, 134.77]],
+  fr: [[41.33, -5.14], [51.09, 9.56]],
+  np: [[26.35, 80.06], [30.45, 88.20]]
+};
+
+const countryShapeThumbs = Object.fromEntries(
+  Object.entries(countryShapeFiles).map(([code, fileName]) => [
+    code,
+    `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(fileName)}`
+  ])
 );
 
 const contentsGrid = document.getElementById('contentsGrid');
@@ -212,7 +245,12 @@ const mapModal = document.getElementById('mapModal');
 const mapModalBackdrop = document.getElementById('mapModalBackdrop');
 const mapModalClose = document.getElementById('mapModalClose');
 const mapModalTitle = document.getElementById('mapModalTitle');
-const mapModalImage = document.getElementById('mapModalImage');
+const mapModalText = document.getElementById('mapModalText');
+const mapView = document.getElementById('mapView');
+
+let leafletMap = null;
+let activeCountryLayer = null;
+let pendingController = null;
 
 function makeLink(recipe, index) {
   return `
@@ -249,12 +287,12 @@ recipesSection.innerHTML = recipes.map((recipe, index) => `
       <h2>${recipe.title}</h2>
       <div class="recipe-topline">
         <a class="country-card flag-link" href="${countryLinks[recipe.code]}" target="_blank" rel="noopener noreferrer" aria-label="Open ${recipe.country} on Wikipedia">
-          <img class="country-card-image flag-image" src="assets/flags/${recipe.code}.svg" alt="Flag of ${recipe.country}">
-          <span class="country-card-text"><strong>${recipe.country}</strong><span>Country page</span></span>
+          <img class="country-card-image" src="assets/flags/${recipe.code}.svg" alt="Flag of ${recipe.country}">
+          <span class="country-card-text"><strong>${recipe.country}</strong><span>Open country page</span></span>
         </a>
         <button class="country-card map-trigger" type="button" data-code="${recipe.code}" data-country="${recipe.country}" aria-label="Open map of ${recipe.country}">
-          <img class="country-card-image map-shape" src="${countryMaps[recipe.code]}" alt="Map of ${recipe.country}">
-          <span class="country-card-text"><strong>${recipe.country}</strong><span>Open map</span></span>
+          <img class="country-card-image map-shape" src="${countryShapeThumbs[recipe.code]}" alt="Outline of ${recipe.country}" data-code="${recipe.code}" loading="lazy" referrerpolicy="no-referrer">
+          <span class="country-card-text"><strong>${recipe.country}</strong><span>Open real map</span></span>
         </button>
         <span class="badge cook-badge">Cook: ${recipe.cook}</span>
       </div>
@@ -280,6 +318,13 @@ recipesSection.innerHTML = recipes.map((recipe, index) => `
   </article>
 `).join('');
 
+document.querySelectorAll('.map-shape').forEach((img) => {
+  img.addEventListener('error', () => {
+    const code = img.dataset.code;
+    if (code) img.src = `assets/maps/${code}.svg`;
+  }, { once: true });
+});
+
 openBook.addEventListener('click', () => {
   if (bookStage.classList.contains('open')) return;
   document.body.classList.remove('locked');
@@ -292,13 +337,100 @@ openBook.addEventListener('click', () => {
   }, 1850);
 });
 
+function ensureLeafletMap() {
+  if (leafletMap || typeof L === 'undefined') return;
+  leafletMap = L.map(mapView, {
+    zoomControl: true,
+    scrollWheelZoom: true,
+    attributionControl: true
+  });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(leafletMap);
+}
+
+function clearCountryLayer() {
+  if (activeCountryLayer && leafletMap) {
+    leafletMap.removeLayer(activeCountryLayer);
+    activeCountryLayer = null;
+  }
+}
+
+async function drawCountryOnMap(country, code) {
+  ensureLeafletMap();
+  if (!leafletMap) return;
+
+  clearCountryLayer();
+
+  if (pendingController) {
+    pendingController.abort();
+    pendingController = null;
+  }
+
+  const fallbackBounds = countryBounds[code];
+  mapModalText.textContent = 'Loading map…';
+
+  if (fallbackBounds) {
+    leafletMap.fitBounds(fallbackBounds, { padding: [20, 20] });
+  }
+
+  try {
+    pendingController = new AbortController();
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/search?country=${encodeURIComponent(country)}&format=geojson&polygon_geojson=1&limit=1`,
+      {
+        headers: { 'Accept': 'application/json' },
+        signal: pendingController.signal
+      }
+    );
+
+    if (!response.ok) throw new Error('Map fetch failed');
+
+    const data = await response.json();
+    const feature = data.features && data.features[0];
+
+    if (!feature) throw new Error('No country shape returned');
+
+    activeCountryLayer = L.geoJSON(feature, {
+      style: {
+        color: '#a84f2a',
+        weight: 2,
+        fillColor: '#d9985a',
+        fillOpacity: 0.24
+      }
+    }).addTo(leafletMap);
+
+    leafletMap.fitBounds(activeCountryLayer.getBounds(), { padding: [20, 20] });
+    mapModalText.textContent = 'Use wheel or pinch to zoom. Drag to move around the map.';
+  } catch (error) {
+    if (error.name === 'AbortError') return;
+
+    if (fallbackBounds) {
+      activeCountryLayer = L.rectangle(fallbackBounds, {
+        color: '#a84f2a',
+        weight: 2,
+        fillColor: '#d9985a',
+        fillOpacity: 0.10
+      }).addTo(leafletMap);
+      leafletMap.fitBounds(activeCountryLayer.getBounds(), { padding: [20, 20] });
+    }
+
+    mapModalText.textContent = 'Use wheel or pinch to zoom. Drag to move around the map.';
+  }
+}
+
 function openMapModal(country, code) {
   mapModalTitle.textContent = country;
-  mapModalImage.src = countryMaps[code];
-  mapModalImage.alt = `Map of ${country}`;
   mapModal.classList.add('show');
   mapModal.setAttribute('aria-hidden', 'false');
   document.body.classList.add('modal-open');
+
+  setTimeout(() => {
+    ensureLeafletMap();
+    if (leafletMap) leafletMap.invalidateSize();
+    drawCountryOnMap(country, code);
+  }, 60);
 }
 
 document.querySelectorAll('.map-trigger').forEach((trigger) => {
@@ -311,6 +443,11 @@ function closeMapModal() {
   mapModal.classList.remove('show');
   mapModal.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('modal-open');
+
+  if (pendingController) {
+    pendingController.abort();
+    pendingController = null;
+  }
 }
 
 mapModalBackdrop.addEventListener('click', closeMapModal);

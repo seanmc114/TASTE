@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" role="img" aria-label="Map outline of cn">
-  <rect width="240" height="180" fill="none"/>
-  <g fill="#f0d8d4" stroke="#5e4736" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
-    <path d="M42 56 L64 34 L98 30 L126 40 L146 30 L172 40 L190 58 L188 80 L172 92 L176 112 L162 128 L136 130 L120 142 L96 138 L78 126 L58 128 L46 114 L34 94 L38 74 Z"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 80">
+    <rect x="1" y="1" width="108" height="78" rx="16" fill="white" stroke="rgba(0,0,0,.12)"/>
+    <path d="M18 30 C28 18,48 14,62 20 C78 30,82 48,72 62 C74 76,62 90,42 90 C24 88,16 68,14 48 C12 40,12 34,18 30 Z" fill="#f5d3cd" stroke="rgba(60,40,20,.18)" stroke-width="1.5"/>
+    <path d="M74 18c7 0 13 5 13 12 0 9-13 23-13 23S61 39 61 30c0-7 6-12 13-12z" fill="#d04f37"/>
+    <circle cx="74" cy="30" r="4.5" fill="white"/>
+    </svg>

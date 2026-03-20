@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" role="img" aria-label="Map outline of ro">
-  <rect width="240" height="180" fill="none"/>
-  <g fill="#d9e6ff" stroke="#5e4736" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
-    <path d="M90 34 L118 26 L146 34 L160 56 L154 80 L164 98 L150 122 L124 132 L100 126 L78 110 L74 88 L66 64 L74 46 Z"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 80">
+    <rect x="1" y="1" width="108" height="78" rx="16" fill="white" stroke="rgba(0,0,0,.12)"/>
+    <path d="M34 18 C48 16,60 24,62 40 C72 50,70 68,56 78 C42 90,28 86,22 70 C14 56,18 28,34 18 Z" fill="#dbe6ff" stroke="rgba(60,40,20,.18)" stroke-width="1.5"/>
+    <path d="M74 18c7 0 13 5 13 12 0 9-13 23-13 23S61 39 61 30c0-7 6-12 13-12z" fill="#d04f37"/>
+    <circle cx="74" cy="30" r="4.5" fill="white"/>
+    </svg>

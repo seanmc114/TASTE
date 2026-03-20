@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" role="img" aria-label="Map outline of pk">
-  <rect width="240" height="180" fill="none"/>
-  <g fill="#daefe0" stroke="#5e4736" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
-    <path d="M88 20 L112 26 L126 42 L138 38 L150 50 L146 68 L154 84 L148 100 L138 116 L126 130 L112 138 L104 156 L88 150 L80 134 L70 118 L76 102 L70 86 L74 68 L82 54 L78 36 Z"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 80">
+    <rect x="1" y="1" width="108" height="78" rx="16" fill="white" stroke="rgba(0,0,0,.12)"/>
+    <path d="M26 22 C42 16,58 20,66 34 C74 44,76 60,66 72 C54 86,34 90,22 76 C14 64,14 34,26 22 Z" fill="#d9f0df" stroke="rgba(60,40,20,.18)" stroke-width="1.5"/>
+    <path d="M74 18c7 0 13 5 13 12 0 9-13 23-13 23S61 39 61 30c0-7 6-12 13-12z" fill="#d04f37"/>
+    <circle cx="74" cy="30" r="4.5" fill="white"/>
+    </svg>
