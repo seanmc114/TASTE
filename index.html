@@ -1,86 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>A Taste of Synge Street</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
+<body class="locked">
+  <div class="crest-watermark" aria-hidden="true"></div>
 
-<body>
+  <main>
+    <section class="hero-shell" id="top">
+      <div class="book-stage" id="bookStage">
+        <button class="cover-button" id="openBook" aria-label="Open A Taste of Synge Street">
+          <div class="cover-front">
+            <img src="assets/cover.png" alt="A Taste of Synge Street cover" class="cover-image" />
+            <div class="cover-overlay"></div>
+            <div class="cover-hint" aria-hidden="true">
+              <span class="hint-dot"></span>
+              <span>Tap or click the cover to open</span>
+            </div>
+          </div>
+        </button>
 
-  <!-- COVER -->
-  <div class="cover" id="cover">
-    <img src="assets/cover.png" class="cover-img">
-    <h1 class="cover-title">A Taste of Synge Street</h1>
-  </div>
+        <div class="inside-book" id="insideBook">
+          <div class="inside-spread">
+            <div class="inside-page intro-page">
+              <h2>Welcome</h2>
+              <p>
+                As a son, there can be few things better than arriving home to the smell of your favourite meal.
+                This collection is a tribute to those who make these marvellous meals for us. We hope you enjoy them
+                as much as we do.
+              </p>
+              <p>
+                It is also a quiet tribute to the mothers, fathers, guardians and family members whose care reaches us
+                through food, day after day.
+              </p>
+              <p class="signature">Nishim</p>
+            </div>
 
-  <!-- BOOK -->
-  <div class="book hidden" id="book">
-
-    <!-- WELCOME -->
-    <section class="page">
-      <h2>Welcome</h2>
-      <p>
-        As a son, there can be few things better than arriving home to the smell of your favourite meal.
-        This collection is a tribute to those who make these marvellous meals for us.
-        We hope you enjoy them as much as we do.
-      </p>
-      <p>
-        It is also a quiet tribute to the mothers, fathers, guardians and family members whose care so often reaches us through food.
-      </p>
-      <p><strong>Nishim</strong></p>
-    </section>
-
-    <!-- INDEX -->
-    <section class="page">
-      <h2>Index</h2>
-      <ul>
-        <li>Mrs Mariotto's Risotto</li>
-        <li>Mrs Beglan's Vanillekipferl (Vanilla Crescents)</li>
-        <li>Mrs Lupu's Sarmale</li>
-        <li>Mrs Andreev's Sarmale in Foi de Vita</li>
-        <li>Mrs Sonina's Banana Waffles</li>
-        <li>Mrs Nwogu's Jollof Rice</li>
-        <li>Mrs Benaceur's Chaghchouka</li>
-        <li>Mrs Benaceur's Maqroud</li>
-        <li>Mrs Khan's Chicken Biryani</li>
-        <li>Mrs Khorrami's Golden Cookies</li>
-        <li>Mrs Li's Chinese Dumplings with Chili Oil</li>
-        <li>Mrs Phillips' Garlic Cheese Potatoes</li>
-        <li>Mrs Kadariya's Potatoes with Cumin</li>
-        <li>Mrs Doyle's Spaghetti with Meatballs</li>
-      </ul>
-    </section>
-
-    <!-- SAMPLE RECIPE STRUCTURE (NO MAPS, FLAGS ONLY) -->
-    <!-- Copy this pattern for each recipe if needed -->
-
-    <section class="page">
-      <h2>Mrs Mariotto's Risotto</h2>
-
-      <div class="recipe-meta">
-        <!-- FLAG ONLY (kept) -->
-        <a href="https://en.wikipedia.org/wiki/Italy" target="_blank">
-          <img src="assets/flags/italy.png" class="flag" alt="Italy">
-        </a>
+            <div class="inside-page contents-page">
+              <h2>Index</h2>
+              <p class="intro-note">Jump straight to any recipe.</p>
+              <div class="contents-grid" id="contentsGrid"></div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <img src="assets/photos/recipe01.png" class="recipe-img">
-
-      <h3>Ingredients</h3>
-      <p>...</p>
-
-      <h3>Method</h3>
-      <p>...</p>
-
-      <h3>Why it is special</h3>
-      <p>...</p>
-
-      <h3>Tip from the cook</h3>
-      <p>...</p>
     </section>
 
+    <div class="post-cover" id="postCover">
+      <nav class="top-nav" id="topNav">
+        <a href="#top">Cover</a>
+        <a href="#contents">Index</a>
+        <a href="#recipes">Recipes</a>
+      </nav>
+
+      <section class="contents-section" id="contents">
+        <div class="section-heading">
+          <h2>Fourteen family recipes</h2>
+          <p>
+            From Italy to Nepal, these dishes bring together family favourites, comfort food,
+            celebration food and recipes that carry memories from home.
+          </p>
+        </div>
+        <div class="recipe-card-grid" id="recipeCardGrid"></div>
+      </section>
+
+      <section class="recipes-section" id="recipes"></section>
+    </div>
+  </main>
+
+  <footer class="site-footer">©2026 Synge Street – Imagination and Perseverance</footer>
+
+
+  <div class="map-modal" id="mapModal" aria-hidden="true">
+    <button class="map-modal-backdrop" id="mapModalBackdrop" aria-label="Close enlarged map"></button>
+    <div class="map-modal-card" role="dialog" aria-modal="true" aria-labelledby="mapModalTitle">
+      <button class="map-modal-close" id="mapModalClose" aria-label="Close enlarged map">×</button>
+      <div class="map-modal-header">
+        <h3 id="mapModalTitle"></h3>
+      </div>
+      <div class="map-image-wrap">
+        <img id="mapModalImage" class="map-modal-image" alt="Country map" />
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>
