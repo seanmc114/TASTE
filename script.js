@@ -183,7 +183,6 @@ const recipes = [
   }
 ];
 
-
 const countryLinks = {
   it: 'https://en.wikipedia.org/wiki/Italy',
   de: 'https://en.wikipedia.org/wiki/Germany',
@@ -199,43 +198,6 @@ const countryLinks = {
   np: 'https://en.wikipedia.org/wiki/Nepal'
 };
 
-const countryShapeFiles = {
-  it: 'Italy (orthographic projection).svg',
-  de: 'Germany (orthographic projection).svg',
-  ro: 'Romania (orthographic projection).svg',
-  md: 'Moldova (orthographic projection).svg',
-  th: 'Thailand (orthographic projection).svg',
-  ng: 'Nigeria (orthographic projection).svg',
-  dz: 'Algeria (orthographic projection).svg',
-  pk: 'Pakistan (orthographic projection).svg',
-  af: 'Afghanistan (orthographic projection).svg',
-  cn: 'China (orthographic projection).svg',
-  fr: 'France (orthographic projection).svg',
-  np: 'Nepal (orthographic projection).svg'
-};
-
-const countryBounds = {
-  it: [[35.49, 6.63], [47.10, 18.52]],
-  de: [[47.27, 5.87], [55.06, 15.04]],
-  ro: [[43.62, 20.22], [48.27, 29.71]],
-  md: [[45.47, 26.62], [48.49, 30.17]],
-  th: [[5.61, 97.35], [20.46, 105.64]],
-  ng: [[4.24, 2.67], [13.89, 14.68]],
-  dz: [[18.97, -8.67], [37.09, 11.99]],
-  pk: [[23.69, 60.87], [37.08, 77.84]],
-  af: [[29.38, 60.49], [38.49, 74.89]],
-  cn: [[18.16, 73.50], [53.56, 134.77]],
-  fr: [[41.33, -5.14], [51.09, 9.56]],
-  np: [[26.35, 80.06], [30.45, 88.20]]
-};
-
-const countryShapeThumbs = Object.fromEntries(
-  Object.entries(countryShapeFiles).map(([code, fileName]) => [
-    code,
-    `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(fileName)}`
-  ])
-);
-
 const contentsGrid = document.getElementById('contentsGrid');
 const recipeCardGrid = document.getElementById('recipeCardGrid');
 const recipesSection = document.getElementById('recipes');
@@ -244,13 +206,9 @@ const bookStage = document.getElementById('bookStage');
 const mapModal = document.getElementById('mapModal');
 const mapModalBackdrop = document.getElementById('mapModalBackdrop');
 const mapModalClose = document.getElementById('mapModalClose');
+const mapModalImage = document.getElementById('mapModalImage');
 const mapModalTitle = document.getElementById('mapModalTitle');
 const mapModalText = document.getElementById('mapModalText');
-const mapView = document.getElementById('mapView');
-
-let leafletMap = null;
-let activeCountryLayer = null;
-let pendingController = null;
 
 function makeLink(recipe, index) {
   return `
@@ -258,7 +216,7 @@ function makeLink(recipe, index) {
       <div class="kicker">${String(index + 1).padStart(2, '0')} · ${recipe.country}</div>
       <strong>${recipe.title}</strong>
       <div style="margin-top:10px;display:flex;align-items:center;gap:10px;color:#6f5949;">
-        <img src="assets/flags/${recipe.code}.svg" alt="" width="28" height="20" style="border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.16)">
+        <img src="assets/flags/${recipe.code}.svg" alt="" width="22" height="16" style="border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.16)">
         <span>${recipe.cook}</span>
       </div>
     </a>`;
@@ -271,7 +229,7 @@ recipeCardGrid.innerHTML = recipes.map((recipe, index) => `
     <div class="kicker">${String(index + 1).padStart(2, '0')}</div>
     <h3 style="margin:.4rem 0 .3rem;font-size:1.15rem;">${recipe.title}</h3>
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-      <img src="assets/flags/${recipe.code}.svg" alt="" width="28" height="20" style="border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.16)">
+      <img src="assets/flags/${recipe.code}.svg" alt="" width="22" height="16" style="border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.16)">
       <span>${recipe.country}</span>
     </div>
   </a>
@@ -286,16 +244,20 @@ recipesSection.innerHTML = recipes.map((recipe, index) => `
       <div class="kicker">Recipe ${String(index + 1).padStart(2, '0')}</div>
       <h2>${recipe.title}</h2>
       <div class="recipe-topline">
-        <a class="country-card flag-link" href="${countryLinks[recipe.code]}" target="_blank" rel="noopener noreferrer" aria-label="Open ${recipe.country} on Wikipedia">
-          <img class="country-card-image" src="assets/flags/${recipe.code}.svg" alt="Flag of ${recipe.country}">
-          <span class="country-card-text"><strong>${recipe.country}</strong><span>Open country page</span></span>
+        <a class="badge flag-link" href="${countryLinks[recipe.code]}" target="_blank" rel="noopener noreferrer" aria-label="Open ${recipe.country} on Wikipedia">
+          <img src="assets/flags/${recipe.code}.svg" alt="Flag of ${recipe.country}">
+          <span>${recipe.country}</span>
         </a>
-        <button class="country-card map-trigger" type="button" data-code="${recipe.code}" data-country="${recipe.country}" aria-label="Open map of ${recipe.country}">
-          <img class="country-card-image map-shape" src="${countryShapeThumbs[recipe.code]}" alt="Outline of ${recipe.country}" data-code="${recipe.code}" loading="lazy" referrerpolicy="no-referrer">
-          <span class="country-card-text"><strong>${recipe.country}</strong><span>Open real map</span></span>
-        </button>
-        <span class="badge cook-badge">Cook: ${recipe.cook}</span>
+        <span class="badge">Cook: ${recipe.cook}</span>
       </div>
+      <button class="country-spot map-trigger" type="button" data-country="${recipe.country}" data-map="assets/maps/${recipe.code}.svg" aria-label="Open larger map of ${recipe.country}">
+        <div class="country-spot-map">
+          <div class="map-glow" aria-hidden="true"></div>
+          <img src="assets/maps/${recipe.code}.svg" alt="Map of ${recipe.country}">
+          <span class="country-pin" aria-hidden="true"></span>
+        </div>
+        <div class="country-spot-text">${recipe.country}<span class="country-spot-sub">Tap or click to enlarge map</span></div>
+      </button>
       <div class="recipe-grid">
         <div class="panel">
           <h3>Ingredients</h3>
@@ -318,13 +280,6 @@ recipesSection.innerHTML = recipes.map((recipe, index) => `
   </article>
 `).join('');
 
-document.querySelectorAll('.map-shape').forEach((img) => {
-  img.addEventListener('error', () => {
-    const code = img.dataset.code;
-    if (code) img.src = `assets/maps/${code}.svg`;
-  }, { once: true });
-});
-
 openBook.addEventListener('click', () => {
   if (bookStage.classList.contains('open')) return;
   document.body.classList.remove('locked');
@@ -334,108 +289,21 @@ openBook.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const introPage = document.querySelector('.intro-page');
     if (introPage) introPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 1850);
+  }, 1650);
 });
 
-function ensureLeafletMap() {
-  if (leafletMap || typeof L === 'undefined') return;
-  leafletMap = L.map(mapView, {
-    zoomControl: true,
-    scrollWheelZoom: true,
-    attributionControl: true
-  });
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(leafletMap);
-}
 
-function clearCountryLayer() {
-  if (activeCountryLayer && leafletMap) {
-    leafletMap.removeLayer(activeCountryLayer);
-    activeCountryLayer = null;
-  }
-}
-
-async function drawCountryOnMap(country, code) {
-  ensureLeafletMap();
-  if (!leafletMap) return;
-
-  clearCountryLayer();
-
-  if (pendingController) {
-    pendingController.abort();
-    pendingController = null;
-  }
-
-  const fallbackBounds = countryBounds[code];
-  mapModalText.textContent = 'Loading map…';
-
-  if (fallbackBounds) {
-    leafletMap.fitBounds(fallbackBounds, { padding: [20, 20] });
-  }
-
-  try {
-    pendingController = new AbortController();
-    const response = await fetch(
-      `https://nominatim.openstreetmap.org/search?country=${encodeURIComponent(country)}&format=geojson&polygon_geojson=1&limit=1`,
-      {
-        headers: { 'Accept': 'application/json' },
-        signal: pendingController.signal
-      }
-    );
-
-    if (!response.ok) throw new Error('Map fetch failed');
-
-    const data = await response.json();
-    const feature = data.features && data.features[0];
-
-    if (!feature) throw new Error('No country shape returned');
-
-    activeCountryLayer = L.geoJSON(feature, {
-      style: {
-        color: '#a84f2a',
-        weight: 2,
-        fillColor: '#d9985a',
-        fillOpacity: 0.24
-      }
-    }).addTo(leafletMap);
-
-    leafletMap.fitBounds(activeCountryLayer.getBounds(), { padding: [20, 20] });
-    mapModalText.textContent = 'Use wheel or pinch to zoom. Drag to move around the map.';
-  } catch (error) {
-    if (error.name === 'AbortError') return;
-
-    if (fallbackBounds) {
-      activeCountryLayer = L.rectangle(fallbackBounds, {
-        color: '#a84f2a',
-        weight: 2,
-        fillColor: '#d9985a',
-        fillOpacity: 0.10
-      }).addTo(leafletMap);
-      leafletMap.fitBounds(activeCountryLayer.getBounds(), { padding: [20, 20] });
-    }
-
-    mapModalText.textContent = 'Use wheel or pinch to zoom. Drag to move around the map.';
-  }
-}
-
-function openMapModal(country, code) {
-  mapModalTitle.textContent = country;
-  mapModal.classList.add('show');
-  mapModal.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('modal-open');
-
-  setTimeout(() => {
-    ensureLeafletMap();
-    if (leafletMap) leafletMap.invalidateSize();
-    drawCountryOnMap(country, code);
-  }, 60);
-}
-
-document.querySelectorAll('.map-trigger').forEach((trigger) => {
+document.querySelectorAll('.map-trigger').forEach(trigger => {
   trigger.addEventListener('click', () => {
-    openMapModal(trigger.dataset.country, trigger.dataset.code);
+    const country = trigger.dataset.country;
+    const mapSrc = trigger.dataset.map;
+    mapModalImage.src = mapSrc;
+    mapModalImage.alt = `Map of ${country}`;
+    mapModalTitle.textContent = country;
+    mapModalText.textContent = `This dish comes from ${country}.`;
+    mapModal.classList.add('show');
+    mapModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
   });
 });
 
@@ -443,11 +311,6 @@ function closeMapModal() {
   mapModal.classList.remove('show');
   mapModal.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('modal-open');
-
-  if (pendingController) {
-    pendingController.abort();
-    pendingController = null;
-  }
 }
 
 mapModalBackdrop.addEventListener('click', closeMapModal);
