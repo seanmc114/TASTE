@@ -183,32 +183,11 @@ const recipes = [
   }
 ];
 
-const countryLinks = {
-  it: 'https://en.wikipedia.org/wiki/Italy',
-  de: 'https://en.wikipedia.org/wiki/Germany',
-  ro: 'https://en.wikipedia.org/wiki/Romania',
-  md: 'https://en.wikipedia.org/wiki/Moldova',
-  th: 'https://en.wikipedia.org/wiki/Thailand',
-  ng: 'https://en.wikipedia.org/wiki/Nigeria',
-  dz: 'https://en.wikipedia.org/wiki/Algeria',
-  pk: 'https://en.wikipedia.org/wiki/Pakistan',
-  af: 'https://en.wikipedia.org/wiki/Afghanistan',
-  cn: 'https://en.wikipedia.org/wiki/China',
-  fr: 'https://en.wikipedia.org/wiki/France',
-  np: 'https://en.wikipedia.org/wiki/Nepal'
-};
-
 const contentsGrid = document.getElementById('contentsGrid');
 const recipeCardGrid = document.getElementById('recipeCardGrid');
 const recipesSection = document.getElementById('recipes');
 const openBook = document.getElementById('openBook');
 const bookStage = document.getElementById('bookStage');
-const mapModal = document.getElementById('mapModal');
-const mapModalBackdrop = document.getElementById('mapModalBackdrop');
-const mapModalClose = document.getElementById('mapModalClose');
-const mapModalImage = document.getElementById('mapModalImage');
-const mapModalTitle = document.getElementById('mapModalTitle');
-const mapModalText = document.getElementById('mapModalText');
 
 function makeLink(recipe, index) {
   return `
@@ -244,20 +223,19 @@ recipesSection.innerHTML = recipes.map((recipe, index) => `
       <div class="kicker">Recipe ${String(index + 1).padStart(2, '0')}</div>
       <h2>${recipe.title}</h2>
       <div class="recipe-topline">
-        <a class="badge flag-link" href="${countryLinks[recipe.code]}" target="_blank" rel="noopener noreferrer" aria-label="Open ${recipe.country} on Wikipedia">
-          <img src="assets/flags/${recipe.code}.svg" alt="Flag of ${recipe.country}">
+        <span class="badge">
+          <img src="assets/flags/${recipe.code}.svg" alt="">
           <span>${recipe.country}</span>
-        </a>
+        </span>
         <span class="badge">Cook: ${recipe.cook}</span>
       </div>
-      <button class="country-spot map-trigger" type="button" data-country="${recipe.country}" data-map="assets/maps/${recipe.code}.svg" aria-label="Open larger map of ${recipe.country}">
+      <div class="country-spot">
         <div class="country-spot-map">
-          <div class="map-glow" aria-hidden="true"></div>
-          <img src="assets/maps/${recipe.code}.svg" alt="Map of ${recipe.country}">
+          <img src="assets/maps/${recipe.code}.svg" alt="">
           <span class="country-pin" aria-hidden="true"></span>
         </div>
-        <div class="country-spot-text">${recipe.country}<span class="country-spot-sub">Tap or click to enlarge map</span></div>
-      </button>
+        <div class="country-spot-text">${recipe.country}</div>
+      </div>
       <div class="recipe-grid">
         <div class="panel">
           <h3>Ingredients</h3>
@@ -290,34 +268,4 @@ openBook.addEventListener('click', () => {
     const introPage = document.querySelector('.intro-page');
     if (introPage) introPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 1650);
-});
-
-
-document.querySelectorAll('.map-trigger').forEach(trigger => {
-  trigger.addEventListener('click', () => {
-    const country = trigger.dataset.country;
-    const mapSrc = trigger.dataset.map;
-    mapModalImage.src = mapSrc;
-    mapModalImage.alt = `Map of ${country}`;
-    mapModalTitle.textContent = country;
-    mapModalText.textContent = `This dish comes from ${country}.`;
-    mapModal.classList.add('show');
-    mapModal.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('modal-open');
-  });
-});
-
-function closeMapModal() {
-  mapModal.classList.remove('show');
-  mapModal.setAttribute('aria-hidden', 'true');
-  document.body.classList.remove('modal-open');
-}
-
-mapModalBackdrop.addEventListener('click', closeMapModal);
-mapModalClose.addEventListener('click', closeMapModal);
-
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && mapModal.classList.contains('show')) {
-    closeMapModal();
-  }
 });
