@@ -9,42 +9,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="locked">
+<body class="book-locked">
   <div class="crest-watermark" aria-hidden="true"></div>
 
   <main>
     <section class="hero-shell" id="top">
       <div class="book-stage" id="bookStage">
         <button class="cover-button" id="openBook" aria-label="Open A Taste of Synge Street">
-          <div class="cover-front">
-            <img src="assets/cover.png" alt="A Taste of Synge Street cover" class="cover-image" />
-            <div class="cover-overlay"></div>
-            <div class="cover-hint" aria-hidden="true">
-              <span class="hint-dot"></span>
-              <span>Tap or click the cover to open</span>
-            </div>
-          </div>
+          <img src="assets/cover.png" alt="A Taste of Synge Street cover" class="cover-image" />
         </button>
+        <p class="cover-cue" id="coverCue">Tap the cover to open</p>
 
         <div class="inside-book" id="insideBook">
           <div class="inside-spread">
             <div class="inside-page intro-page">
               <h2>Welcome</h2>
-              <p>
-                As a son, there can be few things better than arriving home to the smell of your favourite meal.
-                This collection is a tribute to those who make these marvellous meals for us. We hope you enjoy them
-                as much as we do.
-              </p>
-              <p>
-                It is also a quiet tribute to the mothers, fathers, guardians and family members whose care reaches us
-                through food, day after day.
-              </p>
+              <p>As a son, there can be few things better than arriving home to the smell of your favourite meal. This collection is a tribute to those who make these marvellous meals for us. We hope you enjoy them as much as we do.</p>
+              <p>It is also a quiet thank-you to the mothers, fathers, guardians and family members whose care so often reaches us through food.</p>
               <p class="signature">Nishim</p>
             </div>
-
-            <div class="inside-page contents-page">
+            <div class="inside-page contents-page" id="contents">
               <h2>Index</h2>
-              <p class="intro-note">Jump straight to any recipe.</p>
               <div class="contents-grid" id="contentsGrid"></div>
             </div>
           </div>
@@ -52,43 +37,16 @@
       </div>
     </section>
 
-    <div class="post-cover" id="postCover">
-      <nav class="top-nav" id="topNav">
-        <a href="#top">Cover</a>
-        <a href="#contents">Index</a>
-        <a href="#recipes">Recipes</a>
-      </nav>
+    <nav class="top-nav" id="topNav">
+      <a href="#top">Cover</a>
+      <a href="#contents">Index</a>
+      <a href="#recipes">Recipes</a>
+    </nav>
 
-      <section class="contents-section" id="contents">
-        <div class="section-heading">
-          <h2>Fourteen family recipes</h2>
-          <p>
-            From Italy to Nepal, these dishes bring together family favourites, comfort food,
-            celebration food and recipes that carry memories from home.
-          </p>
-        </div>
-        <div class="recipe-card-grid" id="recipeCardGrid"></div>
-      </section>
-
-      <section class="recipes-section" id="recipes"></section>
-    </div>
+    <section class="recipes-section" id="recipes"></section>
   </main>
 
   <footer class="site-footer">©2026 Synge Street – Imagination and Perseverance</footer>
-
-
-  <div class="map-modal" id="mapModal" aria-hidden="true">
-    <button class="map-modal-backdrop" id="mapModalBackdrop" aria-label="Close enlarged map"></button>
-    <div class="map-modal-card" role="dialog" aria-modal="true" aria-labelledby="mapModalTitle">
-      <button class="map-modal-close" id="mapModalClose" aria-label="Close enlarged map">×</button>
-      <div class="map-modal-header">
-        <h3 id="mapModalTitle"></h3>
-      </div>
-      <div class="map-image-wrap">
-        <img id="mapModalImage" class="map-modal-image" alt="Country map" />
-      </div>
-    </div>
-  </div>
 
   <script src="script.js"></script>
 </body>
